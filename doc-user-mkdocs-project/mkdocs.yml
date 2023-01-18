@@ -1,0 +1,10 @@
+site_name: virtual-spot-weld
+nav:
+    - Home: index.md
+    - UserGuide: userguide.md
+    - API: apireference.md
+    - About: about.md
+    
+theme: 
+    name: 'material'
+    logo: assets/logo.png
