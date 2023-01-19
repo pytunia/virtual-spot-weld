@@ -9,34 +9,49 @@ The ptn_functions.geo file contains various functions to solve for geometrical p
 Calculates the x and y coordinates of a point on the intersection between a line and a circle.
 Returns x and y coordinates of the point of the intersection.
 
-**Parameters**
+**Parameters**   
 
-ptn_p1 and ptn_p2 are endpoints of a line.  
-ptn_p3 is point at center of circle.      
-ptn_circ_rad is radius of circle.   
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** | Default |
+| -------- | --------- | --------- |
+| `ptn_p1` and `ptn_p2` | Endpoints of a line. | required | 
+| `ptn_p3` | Point at center of circle. | required | 
+| `ptn_circ_rad` | Radius of circle. | required | 
 
-**What the function returns**
-
+** Returns**   
 There are two solutions for the intersection between a line and a circle.   
-ptn_inter1_x is x-coordinate of first solution.   
-ptn_inter1_y is y-coordinate of first solution.
-ptn_inter2_x is x-coordinate of second solution.   
-ptn_inter2_y is y-coordinate of second solution.   
+
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** |
+| -------- | --------- |
+| `ptn_inter1_x`| X-coordinate of first solution. | 
+| `ptn_inter1_y`| Y-coordinate of first solution. | 
+| `ptn_inter2_x`| X-coordinate of second solution. | 
+| `ptn_inter2_y`| Y-coordinate of second solution. | 
+
 
 #### calc_intersection_of_two_arcs
+
 **Description**
 
 Calculates the x and y coordinates of a point on the intersection between two arcs or circles of the same radius.
 
-**Parameters**
-ptn_p1 is point at center of first circle.
-ptn_p2 is point at center of second circle.
-ptn_circ_rad is radius of both circles.
+**Parameters**   
 
-**What the function returns**
-The function returns the intersection between two arcs or circles.
-ptn_xinter is x-coordinate of intersection.
-ptn_yinter is y-coordinate of intersection.
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** | Default |
+| -------- | --------- | --------- |
+| `ptn_p1` | Point at center of first circle. | required | 
+| `ptn_p2` | Point at center of second circle. | required | 
+| `ptn_circ_rad` | Radius of both circles. | required | 
+
+** Returns**   
+The function returns the intersection between two arcs or circles.  
+
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** |
+| -------- | --------- |
+| `ptn_xinter`| X-coordinate of intersection. | 
+| `ptn_yinter`| Y-coordinate of intersection. | 
+
+
+
 
 #### calc_angle_btw_two_vectors
 
@@ -45,16 +60,22 @@ ptn_yinter is y-coordinate of intersection.
 Calculates angle between two vectors / lines with originate at the same point.
 Returns angle in radians.
 
-**Parameters**
+**Parameters**   
 
-ptn_p1 is origin of both vectors / lines.  
-ptn_p2 is endpoint of first line.    
-ptn_p3 is endpoint of second line.  
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** | Default |
+| -------- | --------- | --------- |
+| `ptn_p1` | Origin of both vectors / lines. | required | 
+| `ptn_p2` | Endpoint of first line.. | required | 
+| `ptn_p3` | Endpoint of second line. | required | 
+
+** Returns**   
+The function returns the intersection between two arcs or circles.  
+
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** |
+| -------- | --------- |
+| `ptn_anglex`| Angle between two vectors in radians. | 
 
 
-**What the function returns**
-Returns angle between two vectors.  
-ptn_anglex is angle in radians.
 
 #### calc_intersection_btw_two_lines
 
@@ -62,18 +83,22 @@ ptn_anglex is angle in radians.
 
 Calculates the x and y coordinates of a point on the intersection between two lines. 
 
+**Parameters**   
 
-**Parameters**
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** | Default |
+| -------- | --------- | --------- |
+| `ptn_p1` and `ptn_p2` | Endpoints of first line. | required | 
+| `ptn_p3` and `ptn_p4` | Endpoints of second line. | required | 
 
-ptn_p1 and ptn_p2 are endpoints of first line.    
-ptn_p3 and ptn_p4 are endpoints of second line.
+** Returns**   
+Returns intersection between two lines. 
+
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** |
+| -------- | --------- |
+| `ptn_inter_x`| X-coordinate of intersetion. | 
+| `ptn_inter_y`| Y-coordinate of intersetion. |
 
 
-**What the function returns**  
-
-Returns intersection between two lines.
-ptn_inter_x is x-coordinate of intersetion.
-ptn_inter_y is y-coordinate of intersection.
 
 #### calc_distance_btw_two_points
 
@@ -81,14 +106,69 @@ ptn_inter_y is y-coordinate of intersection.
 
 Calculates the distance between two points.
 
+**Parameters**   
 
-**Parameters**
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** | Default |
+| -------- | --------- | --------- |
+| `ptn_p1` | Point in 2D space. | required | 
+| `ptn_p2` | Point in 2D space. | required | 
 
-ptn_p1 and ptn_p2 are two points in 2D space.
-
-**What the function returns**  
-
+** Returns**   
 Returns shortest distance between two points.  
-ptn_dist is distance between two points.
+
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** |
+| -------- | --------- |
+| `ptn_dist`| Distance between two points. | 
+
 
 ### ptn_bezier_functions.geo
+
+#### slice_bezier_param
+
+**Description**  
+Slices a cubic Bezier curve into two cubic Bezier curves. Endpoints are startpoint (`ptn_p1`) of first Bezier curve and endpoint (`ptn_p4`) of second Bezier curve.
+
+**Parameters**   
+
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** | Default |
+| -------- | --------- | --------- |
+| `ptn_param` | Ratio at which curve is split. | required | 
+| `ptn_p1` | End point of Bezier curve. | required | 
+| `ptn_p2` | Control point of Bezier curve. | required | 
+| `ptn_p3` | Control point of Bezier curve. | required | 
+| `ptn_p4` | End point of Bezier curve. | required | 
+
+** Returns**   
+
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** |
+| -------- | --------- |
+| `x12` and `y12`| Coordinates of control point for first new curve. | 
+| `x123` and `y123` | Coordinates of control point for first new curve. | 
+| `x1234` and `y1234` | Coordinates of splitting point. End point for both new bezier curves. | 
+| `x234` and `y234`| Coordinates of control point for second new curve. | 
+| `x34` and `y34` | Coordinates of control point for second new curve. | 
+
+
+
+#### calc_intersection_Bezier_line
+
+
+**Description**  
+Calculates the intersection between a Bezier curve and a line by using the Newton's method.
+
+**Parameters**   
+
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** | Default |
+| -------- | --------- | --------- |
+| `ptn_p1` | End point of Bezier curve. | required | 
+| `ptn_p2` | Control point of Bezier curve. | required | 
+| `ptn_p3` | Control point of Bezier curve. | required | 
+| `ptn_p4` | End point of Bezier curve. | required |  
+| `ptn_pline1` and `ptn_pline2` | End points of line. | required |  
+
+** Returns**   
+Calculates parameter, i.e. ratio at which Bezier needs to be split. Necessary as input for slice_bezier_param.
+
+| **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** |
+| -------- | --------- |
+| `ptn_param`| Ratio at which curve is split for intersection. | 
