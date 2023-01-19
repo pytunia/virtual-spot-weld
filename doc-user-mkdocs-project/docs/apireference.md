@@ -1,6 +1,6 @@
 ###  ptn_functions.geo
 
-The ptn_functions.geo file contains various functions to solve for geometrical problems. All functions are designed for 2D space, i.e. the z-coordinate is ignored.
+The ptn_functions.geo file contains various functions to solve for geometrical problems. All functions are designed for 2D space, i.e. the z-coordinate is ignored, unless otherwise stated.
 
 #### calc_intersection_line_circle
 
@@ -107,14 +107,14 @@ Returns intersection between two lines.
 
 **Description**
 
-Calculates the distance between two points.
+Calculates the distance between two points. Works in 3D space.
 
 **Parameters**   
 
 | **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** | Default |
 | -------- | --------- | --------- |
-| `ptn_p1` | Point in 2D space. | required | 
-| `ptn_p2` | Point in 2D space. | required | 
+| `ptn_p1` | Point in 3D space. | required | 
+| `ptn_p2` | Point in 3D space. | required | 
 
 ** Returns**   
 Returns shortest distance between two points.  

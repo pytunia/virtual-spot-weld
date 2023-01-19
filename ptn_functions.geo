@@ -87,10 +87,10 @@ Return
 
 
 Function calc_distance_btw_two_points
-
-	ptn_x1 = ptn_p1[0]; ptn_y1 = ptn_p1[1];
-	ptn_x2 = ptn_p2[0]; ptn_y2 = ptn_p2[1];
-	ptn_dist = Sqrt((ptn_x1 - ptn_x2)^2 + (ptn_y1 - ptn_y2)^2);
+	// works in 2D and 3D space
+	ptn_x1 = ptn_p1[0]; ptn_y1 = ptn_p1[1]; ptn_z1 = ptn_p1[2];
+	ptn_x2 = ptn_p2[0]; ptn_y2 = ptn_p2[1]; ptn_z2 = ptn_p2[2];
+	ptn_dist = Sqrt((ptn_x1 - ptn_x2)^2 + (ptn_y1 - ptn_y2)^2 + (ptn_z1 - ptn_z2)^2);
 
 Return
 
