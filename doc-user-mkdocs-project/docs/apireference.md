@@ -40,15 +40,18 @@ Calculates the x and y coordinates of a point on the intersection between two ar
 | -------- | --------- | --------- |
 | `ptn_p1` | Point at center of first circle. | required | 
 | `ptn_p2` | Point at center of second circle. | required | 
-| `ptn_circ_rad` | Radius of both circles. | required | 
+| `ptn_circ_rad_1` | Radius of first circle. | required | 
+| `ptn_circ_rad_2` | Radius of second circle. | required | 
 
 ** Returns**   
-The function returns the intersection between two arcs or circles.  
+The function returns two solutions for intersection between two arcs or circles.  
 
 | **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** |
 | -------- | --------- |
-| `ptn_xinter`| X-coordinate of intersection. | 
-| `ptn_yinter`| Y-coordinate of intersection. | 
+| `ptn_inter1_x`| X-coordinate of first solution. | 
+| `ptn_inter1_y`| Y-coordinate of first solution. | 
+| `ptn_inter2_x`| X-coordinate of second solution. | 
+| `ptn_inter2_y`| Y-coordinate of second solution. | 
 
 
 
@@ -172,3 +175,39 @@ Calculates parameter, i.e. ratio at which Bezier needs to be split. Necessary as
 | **Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** | **Description** |
 | -------- | --------- |
 | `ptn_param`| Ratio at which curve is split for intersection. | 
+
+#### Example
+Slice circlular arc of radius 1 centered at origin (0,0) with a horizontal line at y=0.5.
+
+```
+Include "ptn_bezier_functions.geo";
+
+k=0.5522847498;
+Point(1) = {0, 1, 0};
+Point(2) = {k, 1, 0};
+Point(3) = {1, k, 0};
+Point(4) = {1, 0, 0};
+
+
+ptn_p1[] = Point{1};
+ptn_p2[] = Point{2};
+ptn_p3[] = Point{3};
+ptn_p4[] = Point{4};
+
+ptn_pline1[] = {0., 0.5, 0.};  // start point line
+ptn_pline2[] = {10., 0.5, 0.}; // end point line
+
+
+Call calc_intersection_Bezier_line;
+
+Call slice_bezier_param;
+
+
+Point(1002) = {ptn_x12, ptn_y12, 0}; // Control point
+Point(1003) = {ptn_x123, ptn_y123, 0}; // Control point
+Point(1004) = {ptn_x1234, ptn_y1234, 0}; // Intersecting
+Point(1005) = {ptn_x234, ptn_y234, 0}; // Control point
+Point(1006) = {ptn_x34, ptn_y34, 0}; // Control point
+Bezier(101)  = {1, 1002, 1003, 1004};
+Bezier(102)  = {1004, 1005, 1006, 4};
+```

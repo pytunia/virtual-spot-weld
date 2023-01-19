@@ -29,14 +29,17 @@ Function calc_intersection_of_two_arcs
 
 	ptn_xA = ptn_p1[0]; ptn_yA = ptn_p1[1]; // center first arc
 	ptn_xB = ptn_p2[0]; ptn_yB = ptn_p2[1]; // center second arc
-	ptn_rA = ptn_circ_rad;
-	ptn_rB = ptn_rA;
+	ptn_rA = ptn_circ_rad_1;
+	ptn_rB = ptn_circ_rad_2;
 	
     // intersection of two arcs
 	ptn_d2 = (ptn_xB-ptn_xA)^2 + (ptn_yB-ptn_yA)^2;
 	ptn_K = (1./4.)*Sqrt(((ptn_rA+ptn_rB)^2-ptn_d2)*(ptn_d2-(ptn_rA-ptn_rB)^2));
-	ptn_xinter = (1./2.)*(xB+xA) + (1./2.)*(xB-xA)*(rA^2-rB^2)/d2 - 2.*(yB-yA)*K/d2;
-	ptn_yinter = (1./2.)*(ptn_yB+ptn_yA) + (1./2.)*(ptn_yB-ptn_yA)*(ptn_rA^2-ptn_rB^2)/ptn_d2 + 2.*(ptn_xB-ptn_xA)*ptn_K/ptn_d2;
+	ptn_inter1_x = (1./2.)*(ptn_xB+ptn_xA) + (1./2.)*(ptn_xB-ptn_xA)*(ptn_rA^2-ptn_rB^2)/ptn_d2 - 2.*(ptn_yB-ptn_yA)*ptn_K/ptn_d2;
+	ptn_inter1_y = (1./2.)*(ptn_yB+ptn_yA) + (1./2.)*(ptn_yB-ptn_yA)*(ptn_rA^2-ptn_rB^2)/ptn_d2 + 2.*(ptn_xB-ptn_xA)*ptn_K/ptn_d2;
+	
+	ptn_inter2_x = (1./2.)*(ptn_xB+ptn_xA) + (1./2.)*(ptn_xB-ptn_xA)*(ptn_rA^2-ptn_rB^2)/ptn_d2 + 2.*(ptn_yB-ptn_yA)*ptn_K/ptn_d2;
+	ptn_inter2_y = (1./2.)*(ptn_yB+ptn_yA) + (1./2.)*(ptn_yB-ptn_yA)*(ptn_rA^2-ptn_rB^2)/ptn_d2 - 2.*(ptn_xB-ptn_xA)*ptn_K/ptn_d2;
 
 Return
 

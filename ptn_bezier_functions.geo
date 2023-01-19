@@ -27,8 +27,8 @@ Return
 
 Macro calc_intersection_Bezier_line
 
-ptn_pa1[] = {pline2[1]-pline1[1], pline1[0]-pline2[0], 0.};
-ptn_pa_intercept=pline1[0]*(pline1[1]-pline2[1])+pline1[1]*(pline2[0]-pline1[0]);
+ptn_pa1[] = {ptn_pline2[1]-ptn_pline1[1], ptn_pline1[0]-ptn_pline2[0], 0.};
+ptn_pa_intercept=ptn_pline1[0]*(ptn_pline1[1]-ptn_pline2[1])+ptn_pline1[1]*(ptn_pline2[0]-ptn_pline1[0]);
 
 ptn_param = 0.5; // initial guess
 For (1:20) 
