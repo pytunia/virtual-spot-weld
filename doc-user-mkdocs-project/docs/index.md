@@ -1,19 +1,11 @@
 # Welcome to virtual-spot-weld
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Generate a structured mesh with only hexahedral elements for a spot weld finite element calculation.
 
 ## Getting Started
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Installation
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-### Usage
+* Download and install Gmsh: [https://gmsh.info/](https://gmsh.info/) 
+* Download virtual-spot-weld repository
+* Open `00_main.geo` in Gmsh
+* Use `File -> Export...` to save mesh
 
