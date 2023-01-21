@@ -52,5 +52,14 @@ b200 = (b1+b2)-b3;
 b201 = b1+b2-b9;
 h200 = 0;
 
+
+nodes_8thcircum = 18;
+nodes311 = 5;
+nodes321 = 2;
+nodes334 = 4;
+
+
 Include "01_fusion_zone\01_lines.geo";
+Include "01_fusion_zone\02_volumes.geo";
 Include "02_heat_affected_zone\01_lines.geo";
+Include "02_heat_affected_zone\02_volumes.geo";

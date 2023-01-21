@@ -53,27 +53,5 @@ Lorem ipsum
 
 #####  Create Bezier curves
 ![Fusion Zone Complete](images\01_fusion_zone_complete.PNG){ width="400px" }  
-Lorem ipsum
 
 
-```c
-int foo (void) 
-{
-    int i;
-}
-```
-
-## Heat-affected zone
-```c
-int foo (void) {
-    int i;
-}
-```
-
-## Softened heat-affected zone
-
-## Base material
-
-## Coarsening
-
-## Square fill
