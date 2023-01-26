@@ -42,7 +42,7 @@ Surface(705) = 705;
 Surface Loop(701) = {701, 702, 703, 704, 705, 522};
 Volume(701) = {701};
 
-vol_tag_fz(1) = 701;
+vol_tag_fz(0) = 701;
 
 // --- Volume from surface loop 2 --- //
 Line Loop(707) = {307, 315, 316, -317};
@@ -63,7 +63,7 @@ Surface(711) = 711;
 Surface Loop(702) = {707, 708, 709, 710, 711, 705};
 Volume(702) = {702};
 
-vol_tag_fz(2) = 702;
+vol_tag_fz(1) = 702;
 
 // --- Volume from surface loop 3 --- //
 Line Loop(713) = {-316, 324, 325, -326};
@@ -83,16 +83,18 @@ Surface(717) = 717;
 
 Surface Loop(703) = {713, 714, 715, 716, 717, 711};
 Volume(703) = {703};
-vol_tag_halo(1) = 703;
+vol_tag_halo(0) = 703;
 
 Coherence;
 
 // --- Reflect surfaces --- //
-vol_tag_fz(3) = newv;
-vol_tag_fz(4) = newv+1;
+vol_tag_fz(2) = newv;
 exttmp[] = Symmetry { 1, 0, -1, 0} { Duplicata{ Volume{701}; }   };
+
+vol_tag_fz(3) = newv;
 exttmp[] = Symmetry { 1, 0, -1, 0} { Duplicata{ Volume{702}; }   };
-vol_tag_halo(2) = newv;
+
+vol_tag_halo(1) = newv;
 exttmp[] = Symmetry { 1, 0, -1, 0} { Duplicata{ Volume{703}; }   };
 
 
@@ -114,13 +116,8 @@ surf_top_center[] = Extrude{0, h3, 0}{
 			Surface{exttmp[0]}; Layers{1}; Recombine;
 };
 Printf("Tag for surf_top_center %g", surf_top_center[0]);
-vol_tag_halo(3) = surf_top_center[1];
+vol_tag_halo(2) = surf_top_center[1];
 
-// --- Get tags for fusion zone --- //
-p = 0;
-For(0:4)
-	vol_tag_fz(p+6) = newv+p;
-EndFor
 
 // --- Extrude all surfaces of the side --- //
 p= 1;
@@ -129,21 +126,21 @@ For(0:2)
 	  exttmp[] = Extrude{{0, -1, 0}, {0, 0, 0}, Pi/4}{
 		   Surface{500+p}; Layers{nodes_8thcircum}; Recombine;
 	   };
-	   Printf("Volume tag %g", exttmp[1]);
+	   vol_tag_fz(p+5) = exttmp[1];
 	   exttmp2[] = Extrude{{0, -1, 0}, {0, 0, 0}, Pi/4}{
 		   Surface{exttmp[0]}; Layers{nodes_8thcircum}; Recombine;
 		};
-	   //exttmp2[] = Symmetry { 1, 0, -1, 0} { Duplicata{ Volume{exttmp[1]}; }   };
+	   vol_tag_fz(p+6) = exttmp2[1];
   p++ ;
 EndFor
 
 Coherence;
 
 // --- Get tags for fusion zone boundary / halo --- //
-p = 0;
-For(0:3)
-	vol_tag_halo(p+4) = newv+p;
-EndFor
+//p = 0;
+//For(0:3)
+//	vol_tag_halo(p+3) = newv+p;
+//EndFor
 
 p = 4;
 For(0:1)
@@ -151,14 +148,21 @@ For(0:1)
 	  exttmp[] = Extrude{{0, -1, 0}, {0, 0, 0}, Pi/4}{
 		   Surface{500+p}; Layers{nodes_8thcircum}; Recombine;
 	   };
-	   //Printf("Volume tag %g", exttmp[1]);
+	   vol_tag_halo(p-1) = exttmp[1];
 	   exttmp2[] = Extrude{{0, -1, 0}, {0, 0, 0}, Pi/4}{
 		   Surface{exttmp[0]}; Layers{nodes_8thcircum}; Recombine;
 		};
-	   //exttmp2[] = Symmetry { 1, 0, -1, 0} { Duplicata{ Volume{exttmp[1]}; }   };
+	   vol_tag_halo(p) = exttmp2[1];
 	p++ ;
 EndFor
 
+allSurfaces[] = Surface "*" ;
+Transfinite Surface{allSurfaces[]};
+Recombine Surface{allSurfaces[]};
+
+allVolumes[] = Volume "*" ;
+Transfinite Volume{allVolumes[]};
+Recombine Volume{allVolumes[]};
 
 
 Physical Volume("EL_FZ", 100) = {vol_tag_fz[]};

@@ -24,7 +24,7 @@ h4 		= 	t0-(h1+h2+h3);
 b3 		= 	h1;
 b4 		= 	hL - b3;
 b5 		= 	h3/Sin(angle_wn); // fusion line thickness
-b1 		= 	Floor(0.4*(dL/2)/clen)/10.;
+b1 		= 	Floor(0.4*(dL/2)/clen)*clen;
 b2 		= 	(dL/2 - b1) - (b3+b4);
 
 b6 		= 	bHAZ;
@@ -55,6 +55,6 @@ num_nodes_b8 		= 	Round(b8/clen) + 1;
 num_nodes_h1 		= 	Round(0.8*hL/clen) + 1;
 // num_nodes_h2 	= 	num_nodes_b4;
 // num_nodes_h3 	= 	num_nodes_b5;
-num_nodes_h4 		= 	Round(t0/clen) - num_nodes_h1;
+num_nodes_h4 		= 	Round(t0/clen) - num_nodes_h1 + 2;
 
 nodes_8thcircum = 	18;
