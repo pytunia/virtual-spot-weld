@@ -18,7 +18,7 @@ Point(23) = {(b1+b2+b3+b4+b5+b6), 0, 0, clen};
 //Call calc_intersection_line_circle;
 //Point(25) = {inter1_x, inter1_y, 0, clen};
 p23 = Point{23};
-p25x = p23[0]-t0/Tan(angle_wez);
+p25x = p23[0]-t0/Tan(angle_haz);
 p25y = t0;
 Point(25) = {p25x, p25y, 0, clen};
 
@@ -67,3 +67,17 @@ Line(342) = {26, 27};
 Line(343) = {24, 27};
 Line(344) = {27, 28};
 Line(345) = {25, 28};
+
+
+p_432[] = Translate {0, t0, 0} { Duplicata{ Point{32}; } };
+p_433[] = Translate {0, t0, 0} { Duplicata{ Point{33}; } };
+
+// center points
+p_203[] = Translate {0, t0, 0} { Duplicata{ Point{203}; } };
+Circle(4351) = {21, p_203[0], p_432[0]};
+Circle(4354) = {20, 22, p_433[0]};
+
+
+Line(1333) = {p_432[0], p_433[0]};
+Line(1329) = {p_332[0], p_432[0]};
+Line(1332) = {p_333[0], p_433[0]};
