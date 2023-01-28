@@ -29,7 +29,7 @@ exttmp[] = Symmetry { 1, 0, -1, 0} { Duplicata{ Volume{721}; }   };
 
 
 
-
+// surf_top_center is output from 01_fusion_zone 03_volumes.geo
 exttmp[] = Extrude{0, h4, 0}{
 			Surface{surf_top_center[0]}; Layers{num_nodes_h4 - 1}; Recombine;
 };

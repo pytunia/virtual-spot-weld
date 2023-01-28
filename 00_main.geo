@@ -1,13 +1,13 @@
 Include "99_functions\ptn_functions.geo";
 Include "99_functions\ptn_bezier_functions.geo";
-// Gmsh project created on Fri Jun 28 14:28:54 2019
-//SetFactory("OpenCASCADE");
+
 Geometry.CopyMeshingMethod = 1;
-//Geometry.Tolerance = 1e-8; // equivalence
 Geometry.AutoCoherence = 0;
 
 Include "10_parameters\01_default_parameters.geo";
 // Include "10_parameters\02_custom_parameters.geo";
+flag_halo = 0;
+
 
 Include "01_fusion_zone\01_lines.geo";
 Coherence;

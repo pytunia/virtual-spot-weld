@@ -17,13 +17,13 @@ angle_haz 	= 	angle_haz*(Pi/180);
 // --- PARAMETERS defining mesh construction --- //
 h1 		= 	0.75*hL;
 h2 		= 	hL - h1;
-h3 		= 	clen; // fusion line thickness
+h3 		= 	0; // fusion line thickness
 h4 		= 	t0-(h1+h2+h3);
 
 
 b3 		= 	h1;
 b4 		= 	hL - b3;
-b5 		= 	h3/Sin(angle_wn); // fusion line thickness
+b5 		= 	h3; //h3/Sin(angle_wn); // fusion line thickness
 b1 		= 	Floor(0.4*(dL/2)/clen)*clen;
 b2 		= 	(dL/2 - b1) - (b3+b4);
 

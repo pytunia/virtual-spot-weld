@@ -11,19 +11,24 @@ Line(302) = {2, 4};
 Line(303) = {3, 4};
 Line(304) = {1, 3};
 
-Point(12) = {b1, h1+h2, 0, clen};
-Point(13) = {0, h1+h2, 0, clen};
-
-Line(317) = {4, 12};
-Line(318) = {12, 13};
-Line(319) = {3, 13};
 
 Point(17) = {b1, (h1+h2+h3), 0, clen};
 Point(18) = {0, (h1+h2+h3), 0, clen};
 
-Line(326) = {12, 17};
 Line(327) = {17, 18};
-Line(328) = {13, 18};
+
+If (b5 != 0) // with halo
+	Point(12) = {b1, h1+h2, 0, clen};
+	Point(13) = {0, h1+h2, 0, clen};
+	Line(317) = {4, 12};
+	Line(319) = {3, 13};
+	Line(326) = {12, 17};
+	Line(318) = {12, 13};
+	Line(328) = {13, 18};
+Else
+	Line(317) = {4, 17};
+	Line(319) = {3, 18};
+EndIf
 
 
 // --- Create fusion zone boundary outside --- //
@@ -38,14 +43,14 @@ Call create_bezier_outside;
 
 Call create_bezier_vertical_split_outside;
 
+If (b5 != 0) // with halo
 // --- Create fusion zone boundary inside --- //
-p105[] = Point{105};
-Point(9) = {(b1+b2+b3+b4), 0, 0, clen};
-Point(111) = {p105[0], (h1+h2), 0, clen};
-
-Call create_bezier_inside;
-
-Call create_bezier_vertical_split_inside;
+	p105[] = Point{105};
+	Point(9) = {(b1+b2+b3+b4), 0, 0, clen};
+	Point(111) = {p105[0], (h1+h2), 0, clen};
+	Call create_bezier_inside;
+	Call create_bezier_vertical_split_inside;
+EndIf
 
 
 // --- Y-Grid transition corner to arc --- //
@@ -111,20 +116,25 @@ Point(6) = {ptn_x1234, ptn_y1234, 0}; // Intersecting
 Bezier(307)  = {4, 1042, 1043, 106, 1045, 1046, 6};
 Circle(310) = {6, 201, 8};
 
-// --- Lines --- //
 Line(305) = {2, 5};
-Line(308) = {5, 7};
-Line(311) = {7, 9};
-Line(320) = {9, 14};
-
-Circle(309) = {7, 200, 8};
-Line(313) = {8, 10};
-Line(322) = {10, 15};
-
 Line(306) = {5, 6};
-Line(315) = {6, 11};
-Line(324) = {11, 16};
-//
+Line(308) = {5, 7};
+Circle(309) = {7, 200, 8};
+
+// --- Lines --- //
+If (b5 != 0) // with halo
+	Line(311) = {7, 9};
+	Line(320) = {9, 14};
+	Line(313) = {8, 10};
+	Line(322) = {10, 15};
+	Line(315) = {6, 11};
+	Line(324) = {11, 16};
+Else
+	Line(311) = {7, 14};
+	Line(313) = {8, 15};
+	Line(315) = {6, 16};
+EndIf
+
 
 
 // --------------- BOTTOM
@@ -202,27 +212,52 @@ Line(1302) = {32, p_132[0]};
 Line(1306) = {33, p_133[0]};
 
 
+//If (b5 != 0)
+//	bezier_cp_tag = {11, 111, 1032, 1031, 12};
+//Else
+//	bezier_cp_tag = {16, 116, 1012, 1011, 17};
+//EndIf
+//
+//// --- Volume from surface loop 2 --- //
+//ptop[] = Point{bezier_cp_tag[0]};
+//ptop2[] = Point{bezier_cp_tag[4]};
+//Printf("dist p_232 %g", newp);
+//p_232[] = Translate {0, ptop2[1], 0} { Duplicata{ Point{32}; } };
+//p_233[] = Translate {0, ptop[1], 0} { Duplicata{ Point{33}; } };
+//p_bezier2[] = Rotate {{0, 1, 0}, {0, 0, 0}, -Pi/4} { Duplicata { Point{bezier_cp_tag[1], bezier_cp_tag[2], bezier_cp_tag[3]}; } };
+//
+//// center points
+//p_203[] = Translate {0, h1+h2, 0} { Duplicata{ Point{203}; } };
+//p_1[] = Translate {0, ptop[1], 0} { Duplicata{ Point{1}; } };
+//Circle(2351) = {bezier_cp_tag[4], p_203[0], p_232[0]};
+//Circle(2354) = {bezier_cp_tag[0], p_1[0], p_233[0]};
+
+
 // --- Volume from surface loop 2 --- //
-p11[] = Point{11};
-p_232[] = Translate {0, h1+h2, 0} { Duplicata{ Point{32}; } };
-p_233[] = Translate {0, p11[1], 0} { Duplicata{ Point{33}; } };
-p_bezier2[] = Rotate {{0, 1, 0}, {0, 0, 0}, -Pi/4} { Duplicata { Point{111, 1032, 1031}; } };
+If (b5 != 0)
+	p11[] = Point{11};
+	p_232[] = Translate {0, h1+h2, 0} { Duplicata{ Point{32}; } };
+	p_233[] = Translate {0, p11[1], 0} { Duplicata{ Point{33}; } };
+	p_bezier2[] = Rotate {{0, 1, 0}, {0, 0, 0}, -Pi/4} { Duplicata { Point{111, 1032, 1031}; } };
 
-// center points
-p_203[] = Translate {0, h1+h2, 0} { Duplicata{ Point{203}; } };
-p_1[] = Translate {0, p11[1], 0} { Duplicata{ Point{1}; } };
-Circle(2351) = {12, p_203[0], p_232[0]};
-Circle(2354) = {11, p_1[0], p_233[0]};
+	// center points
+	p_203[] = Translate {0, h1+h2, 0} { Duplicata{ Point{203}; } };
+	p_1[] = Translate {0, p11[1], 0} { Duplicata{ Point{1}; } };
+	Circle(2351) = {12, p_203[0], p_232[0]};
+	Circle(2354) = {11, p_1[0], p_233[0]};
+	
+	ptn_p1 = Point{p_232[0]};
+	ptn_p2 = Point{p_bezier2[0]};
+	Call calc_distance_btw_two_points;
+	Point(1134) = {ptn_p1[0]+0.4*ptn_dist, ptn_p1[1], ptn_p1[2]+0.4*ptn_dist};
+	Point(1133) = {ptn_p2[0]-0.4*ptn_dist, ptn_p2[1], ptn_p2[2]-0.4*ptn_dist};
 
-ptn_p1 = Point{p_232[0]};
-ptn_p2 = Point{p_bezier2[0]};
-Call calc_distance_btw_two_points;
-Point(1134) = {ptn_p1[0]+0.4*ptn_dist, ptn_p1[1], ptn_p1[2]+0.4*ptn_dist};
-Point(1133) = {ptn_p2[0]-0.4*ptn_dist, ptn_p2[1], ptn_p2[2]-0.4*ptn_dist};
+	Bezier(1316) = {p_232[0], 1134, 1133, p_bezier2[0], p_bezier2[1], p_bezier2[2], p_233[0] };
+	Line(1317) = {p_132[0], p_232[0]};
+	Line(1315) = {p_133[0], p_233[0]};
+EndIf
 
-Bezier(1316) = {p_232[0], 1134, 1133, p_bezier2[0], p_bezier2[1], p_bezier2[2], p_233[0] };
-Line(1317) = {p_132[0], p_232[0]};
-Line(1315) = {p_133[0], p_233[0]};
+
 
 
 // --- Volume from surface loop 3 --- //
@@ -244,7 +279,15 @@ Point(1234) = {ptn_p1[0]+0.4*ptn_dist, ptn_p1[1], ptn_p1[2]+0.4*ptn_dist};
 Point(1233) = {ptn_p2[0]-0.4*ptn_dist, ptn_p2[1], ptn_p2[2]-0.4*ptn_dist};
 
 Bezier(1325) = {p_332[0], 1234, 1233, p_bezier3[0], p_bezier3[1], p_bezier3[2], p_333[0] };
-Line(1326) = {p_232[0], p_332[0]};
-Line(1324) = {p_233[0], p_333[0]};
+If (b5 != 0)
+	Line(1326) = {p_232[0], p_332[0]};
+	Line(1324) = {p_233[0], p_333[0]};
+Else
+	Line(1317) = {p_132[0], p_332[0]};
+	Line(1315) = {p_133[0], p_333[0]};
+EndIf
+
+
+
 
 
