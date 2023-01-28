@@ -13,11 +13,13 @@ angle_haz 	= 	DefineNumber[ 70, Name "Parameters/angle_haz" ];
 angle_wn 	= 	angle_wn*(Pi/180);
 angle_haz 	= 	angle_haz*(Pi/180);
 
+flag_halo = 1; // 1: generate halo, 0: omit halo
+flag_shaz = 0; // 1: generate shaz, 0: omit shaz, it will still be displayed but not exported as a separate unit
 
 // --- PARAMETERS defining mesh construction --- //
 h1 		= 	0.75*hL;
 h2 		= 	hL - h1;
-h3 		= 	0; // fusion line thickness
+h3 		= 	0.1; // fusion line thickness
 h4 		= 	t0-(h1+h2+h3);
 
 
@@ -27,7 +29,7 @@ b5 		= 	h3; //h3/Sin(angle_wn); // fusion line thickness
 b1 		= 	Floor(0.4*(dL/2)/clen)*clen;
 b2 		= 	(dL/2 - b1) - (b3+b4);
 
-b6 		= 	bHAZ;
+b6 		= 	bHAZ -b5;
 b7 		= 	bSHAZ;
 b8 		= 	6 - (b1+b2+b3+b4+b5+b6+b7);
 If (angle_wn < (Pi/2))
@@ -58,3 +60,14 @@ num_nodes_h1 		= 	Round(0.8*hL/clen) + 1;
 num_nodes_h4 		= 	Round(t0/clen) - num_nodes_h1 + 2;
 
 nodes_8thcircum = 	18;
+
+If (flag_halo == 0)
+	b5 = 0;
+	b6 	= bHAZ -b5;
+	h3 = 0;
+	h4 	= t0-(h1+h2+h3);
+EndIf
+If (flag_shaz == 0)
+	b7 = clen;
+	num_nodes_b7 	= 	Round(b7/clen) + 1;
+EndIf

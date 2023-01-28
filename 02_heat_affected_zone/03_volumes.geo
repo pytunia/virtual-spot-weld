@@ -88,6 +88,10 @@ allVolumes[] = Volume "*" ;
 Transfinite Volume{allVolumes[]};
 Recombine Volume{allVolumes[]};
 
-//Physical Volume("EL_HAZ", 102) = {vol_tag_haz[]};
-//Physical Volume("EL_SHAZ", 103) = {vol_tag_shaz[]};
+Physical Volume("EL_HAZ", 102) = {vol_tag_haz[]};
+
+If (flag_shaz == 1)
+	Physical Volume("EL_SHAZ", 103) = {vol_tag_shaz[]};
+EndIf
+
 
