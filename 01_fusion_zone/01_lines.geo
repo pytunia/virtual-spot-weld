@@ -56,7 +56,7 @@ EndIf
 // --- Y-Grid transition corner to arc --- //
 Point(200) = {b200, h200, 0};
 
-Point(7) = {(b1+b2)+b3-0.5*b9, 0, 0, clen};
+Point(7) = {(b1+b2)+b3, 0, 0, clen};
 Point(106) = {(b1+b2)-b9, h1, 0, clen};
 
 // - Find Point 8 - //
@@ -212,24 +212,7 @@ Line(1302) = {32, p_132[0]};
 Line(1306) = {33, p_133[0]};
 
 
-//If (b5 != 0)
-//	bezier_cp_tag = {11, 111, 1032, 1031, 12};
-//Else
-//	bezier_cp_tag = {16, 116, 1012, 1011, 17};
-//EndIf
-//
-//// --- Volume from surface loop 2 --- //
-//ptop[] = Point{bezier_cp_tag[0]};
-//ptop2[] = Point{bezier_cp_tag[4]};
-//Printf("dist p_232 %g", newp);
-//p_232[] = Translate {0, ptop2[1], 0} { Duplicata{ Point{32}; } };
-//p_233[] = Translate {0, ptop[1], 0} { Duplicata{ Point{33}; } };
-//p_bezier2[] = Rotate {{0, 1, 0}, {0, 0, 0}, -Pi/4} { Duplicata { Point{bezier_cp_tag[1], bezier_cp_tag[2], bezier_cp_tag[3]}; } };
-//
-//// center points
-//p_203[] = Translate {0, h1+h2, 0} { Duplicata{ Point{203}; } };
-//p_1[] = Translate {0, ptop[1], 0} { Duplicata{ Point{1}; } };
-//Circle(2351) = {bezier_cp_tag[4], p_203[0], p_232[0]};
+
 //Circle(2354) = {bezier_cp_tag[0], p_1[0], p_233[0]};
 
 

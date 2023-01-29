@@ -9,23 +9,26 @@ hL 		= 	DefineNumber[ 0.8, Name "Parameters/hL" ];
 angle_wn	= 	DefineNumber[ 65, Name "Parameters/angle_wn" ];
 angle_haz 	= 	DefineNumber[ 70, Name "Parameters/angle_haz" ];
 
+flag_halo = DefineNumber[ 0, Name "Generate halo (no = 0, yes = 1)?" ];
+// 0: omit. It will still be displayed but not exported as a separate unit.
+flag_shaz = DefineNumber[ 0, Name "Generate SHAZ (no = 0, yes = 1)?" ];
+
 // angles in radians
 angle_wn 	= 	angle_wn*(Pi/180);
 angle_haz 	= 	angle_haz*(Pi/180);
 
-flag_halo = 1; // 1: generate halo, 0: omit halo
-flag_shaz = 0; // 1: generate shaz, 0: omit shaz, it will still be displayed but not exported as a separate unit
-
 // --- PARAMETERS defining mesh construction --- //
 h1 		= 	0.75*hL;
 h2 		= 	hL - h1;
-h3 		= 	0.1; // fusion line thickness
+h3 		= 	clen; // fusion line thickness
 h4 		= 	t0-(h1+h2+h3);
 
 
-b3 		= 	h1;
-b4 		= 	hL - b3;
-b5 		= 	h3; //h3/Sin(angle_wn); // fusion line thickness
+
+b4 		= 	Ceil((0.4*h1)/clen)*clen;
+Printf("dist b4 %g", b4);
+b3 		= 	hL - b4;
+b5 		= 	h3; // h3/Sin(angle_wn); // fusion line thickness
 b1 		= 	Floor(0.4*(dL/2)/clen)*clen;
 b2 		= 	(dL/2 - b1) - (b3+b4);
 
@@ -41,7 +44,7 @@ EndIf
 	
 b200 	= 	(b1+b2)-b3;
 b201 	= 	b1+b2-b9;
-h200 	= 	0;
+h200 	= 	-0.2*b4;
 
 
 // --- PARAMETERS defining number of elements --- //
@@ -67,7 +70,10 @@ If (flag_halo == 0)
 	h3 = 0;
 	h4 	= t0-(h1+h2+h3);
 EndIf
-If (flag_shaz == 0)
-	b7 = clen;
+
+
+If (flag_shaz == 0) 
+	bSHAZ = clen;
+	b7 = bSHAZ;
 	num_nodes_b7 	= 	Round(b7/clen) + 1;
 EndIf

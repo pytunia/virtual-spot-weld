@@ -40,3 +40,16 @@ Coherence;
 //Mesh 3;
 //Coherence Mesh;
 //
+//+
+
+
+allPoints[] = Point "*" ;
+allLines[] = Line "*" ;
+allSurfaces[] = Surface "*" ;
+allVolumes[] = Volume "*" ;
+
+
+Rotate {{0, 1, 0}, {0, 0, 0}, Pi} {
+  Point{allPoints[]}; Line{allLines[]}; Surface{allSurfaces[]}; Volume{allVolumes[]};
+}
+
