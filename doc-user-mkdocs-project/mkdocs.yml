@@ -1,7 +1,8 @@
 site_name: virtual-spot-weld
 nav:
     - Home: index.md
-    - "User Guide": userguide.md
+    - "User Guide - Usage": userguide_usage.md
+    - "User Guide - Code": userguide_code.md
     - API: apireference.md
     - About: about.md
     
