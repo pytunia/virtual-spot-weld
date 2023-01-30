@@ -1,0 +1,952 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../userguide_code/">
+      
+      
+        <link rel="next" href="../about/">
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.5">
+    
+    
+      
+        <title>API - virtual-spot-weld</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ptn_functionsgeo" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="virtual-spot-weld" class="md-header__button md-logo" aria-label="virtual-spot-weld" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            virtual-spot-weld
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="virtual-spot-weld" class="md-nav__button md-logo" aria-label="virtual-spot-weld" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    virtual-spot-weld
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../userguide_usage/" class="md-nav__link">
+        User Guide - Usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../userguide_code/" class="md-nav__link">
+        User Guide - Code
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        API
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ptn_functionsgeo" class="md-nav__link">
+    ptn_functions.geo
+  </a>
+  
+    <nav class="md-nav" aria-label="ptn_functions.geo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calc_intersection_line_circle" class="md-nav__link">
+    calc_intersection_line_circle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calc_intersection_of_two_arcs" class="md-nav__link">
+    calc_intersection_of_two_arcs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calc_angle_btw_two_vectors" class="md-nav__link">
+    calc_angle_btw_two_vectors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calc_intersection_btw_two_lines" class="md-nav__link">
+    calc_intersection_btw_two_lines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calc_distance_btw_two_points" class="md-nav__link">
+    calc_distance_btw_two_points
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ptn_bezier_functionsgeo" class="md-nav__link">
+    ptn_bezier_functions.geo
+  </a>
+  
+    <nav class="md-nav" aria-label="ptn_bezier_functions.geo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slice_bezier_param" class="md-nav__link">
+    slice_bezier_param
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calc_intersection_bezier_line" class="md-nav__link">
+    calc_intersection_Bezier_line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ptn_functionsgeo" class="md-nav__link">
+    ptn_functions.geo
+  </a>
+  
+    <nav class="md-nav" aria-label="ptn_functions.geo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calc_intersection_line_circle" class="md-nav__link">
+    calc_intersection_line_circle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calc_intersection_of_two_arcs" class="md-nav__link">
+    calc_intersection_of_two_arcs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calc_angle_btw_two_vectors" class="md-nav__link">
+    calc_angle_btw_two_vectors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calc_intersection_btw_two_lines" class="md-nav__link">
+    calc_intersection_btw_two_lines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calc_distance_btw_two_points" class="md-nav__link">
+    calc_distance_btw_two_points
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ptn_bezier_functionsgeo" class="md-nav__link">
+    ptn_bezier_functions.geo
+  </a>
+  
+    <nav class="md-nav" aria-label="ptn_bezier_functions.geo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slice_bezier_param" class="md-nav__link">
+    slice_bezier_param
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calc_intersection_bezier_line" class="md-nav__link">
+    calc_intersection_Bezier_line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>API</h1>
+
+<h3 id="ptn_functionsgeo">ptn_functions.geo</h3>
+<p>The ptn_functions.geo file contains various functions to solve for geometrical problems. All functions are designed for 2D space, i.e. the z-coordinate is ignored, unless otherwise stated.</p>
+<h4 id="calc_intersection_line_circle">calc_intersection_line_circle</h4>
+<p><strong>Description</strong></p>
+<p>Calculates the x and y coordinates of a point on the intersection between a line and a circle.
+Returns x and y coordinates of the point of the intersection.</p>
+<p><strong>Parameters</strong>   </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_p1</code> and <code>ptn_p2</code></td>
+<td>Endpoints of a line.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p3</code></td>
+<td>Point at center of circle.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_circ_rad</code></td>
+<td>Radius of circle.</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<p><strong> Returns</strong> <br />
+There are two solutions for the intersection between a line and a circle.   </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_inter1_x</code></td>
+<td>X-coordinate of first solution.</td>
+</tr>
+<tr>
+<td><code>ptn_inter1_y</code></td>
+<td>Y-coordinate of first solution.</td>
+</tr>
+<tr>
+<td><code>ptn_inter2_x</code></td>
+<td>X-coordinate of second solution.</td>
+</tr>
+<tr>
+<td><code>ptn_inter2_y</code></td>
+<td>Y-coordinate of second solution.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="calc_intersection_of_two_arcs">calc_intersection_of_two_arcs</h4>
+<p><strong>Description</strong></p>
+<p>Calculates the x and y coordinates of a point on the intersection between two arcs or circles of the same radius.</p>
+<p><strong>Parameters</strong>   </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_p1</code></td>
+<td>Point at center of first circle.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p2</code></td>
+<td>Point at center of second circle.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_circ_rad_1</code></td>
+<td>Radius of first circle.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_circ_rad_2</code></td>
+<td>Radius of second circle.</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<p><strong> Returns</strong> <br />
+The function returns two solutions for intersection between two arcs or circles.  </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_inter1_x</code></td>
+<td>X-coordinate of first solution.</td>
+</tr>
+<tr>
+<td><code>ptn_inter1_y</code></td>
+<td>Y-coordinate of first solution.</td>
+</tr>
+<tr>
+<td><code>ptn_inter2_x</code></td>
+<td>X-coordinate of second solution.</td>
+</tr>
+<tr>
+<td><code>ptn_inter2_y</code></td>
+<td>Y-coordinate of second solution.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="calc_angle_btw_two_vectors">calc_angle_btw_two_vectors</h4>
+<p><strong>Description</strong></p>
+<p>Calculates angle between two vectors / lines with originate at the same point.
+Returns angle in radians.</p>
+<p><strong>Parameters</strong>   </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_p1</code></td>
+<td>Origin of both vectors / lines.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p2</code></td>
+<td>Endpoint of first line..</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p3</code></td>
+<td>Endpoint of second line.</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<p><strong> Returns</strong> <br />
+The function returns the intersection between two arcs or circles.  </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_anglex</code></td>
+<td>Angle between two vectors in radians.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="calc_intersection_btw_two_lines">calc_intersection_btw_two_lines</h4>
+<p><strong>Description</strong></p>
+<p>Calculates the x and y coordinates of a point on the intersection between two lines. </p>
+<p><strong>Parameters</strong>   </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_p1</code> and <code>ptn_p2</code></td>
+<td>Endpoints of first line.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p3</code> and <code>ptn_p4</code></td>
+<td>Endpoints of second line.</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<p><strong> Returns</strong> <br />
+Returns intersection between two lines. </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_inter_x</code></td>
+<td>X-coordinate of intersetion.</td>
+</tr>
+<tr>
+<td><code>ptn_inter_y</code></td>
+<td>Y-coordinate of intersetion.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="calc_distance_btw_two_points">calc_distance_btw_two_points</h4>
+<p><strong>Description</strong></p>
+<p>Calculates the distance between two points. Works in 3D space.</p>
+<p><strong>Parameters</strong>   </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_p1</code></td>
+<td>Point in 3D space.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p2</code></td>
+<td>Point in 3D space.</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<p><strong> Returns</strong> <br />
+Returns shortest distance between two points.  </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_dist</code></td>
+<td>Distance between two points.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ptn_bezier_functionsgeo">ptn_bezier_functions.geo</h3>
+<h4 id="slice_bezier_param">slice_bezier_param</h4>
+<p><strong>Description</strong><br />
+Slices a cubic Bezier curve into two cubic Bezier curves. Endpoints are startpoint (<code>ptn_p1</code>) of first Bezier curve and endpoint (<code>ptn_p4</code>) of second Bezier curve.</p>
+<p><strong>Parameters</strong>   </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_param</code></td>
+<td>Ratio at which curve is split.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p1</code></td>
+<td>End point of Bezier curve.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p2</code></td>
+<td>Control point of Bezier curve.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p3</code></td>
+<td>Control point of Bezier curve.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p4</code></td>
+<td>End point of Bezier curve.</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<p><strong> Returns</strong>   </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x12</code> and <code>y12</code></td>
+<td>Coordinates of control point for first new curve.</td>
+</tr>
+<tr>
+<td><code>x123</code> and <code>y123</code></td>
+<td>Coordinates of control point for first new curve.</td>
+</tr>
+<tr>
+<td><code>x1234</code> and <code>y1234</code></td>
+<td>Coordinates of splitting point. End point for both new bezier curves.</td>
+</tr>
+<tr>
+<td><code>x234</code> and <code>y234</code></td>
+<td>Coordinates of control point for second new curve.</td>
+</tr>
+<tr>
+<td><code>x34</code> and <code>y34</code></td>
+<td>Coordinates of control point for second new curve.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="calc_intersection_bezier_line">calc_intersection_Bezier_line</h4>
+<p><strong>Description</strong><br />
+Calculates the intersection between a Bezier curve and a line by using the Newton's method.</p>
+<p><strong>Parameters</strong>   </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_p1</code></td>
+<td>End point of Bezier curve.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p2</code></td>
+<td>Control point of Bezier curve.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p3</code></td>
+<td>Control point of Bezier curve.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_p4</code></td>
+<td>End point of Bezier curve.</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>ptn_pline1</code> and <code>ptn_pline2</code></td>
+<td>End points of line.</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<p><strong> Returns</strong> <br />
+Calculates parameter, i.e. ratio at which Bezier needs to be split. Necessary as input for slice_bezier_param.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptn_param</code></td>
+<td>Ratio at which curve is split for intersection.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example">Example</h4>
+<p>Slice circlular arc of radius 1 centered at origin (0,0) with a horizontal line at y=0.5.</p>
+<pre><code>Include &quot;ptn_bezier_functions.geo&quot;;
+
+k=0.5522847498;
+Point(1) = {0, 1, 0};
+Point(2) = {k, 1, 0};
+Point(3) = {1, k, 0};
+Point(4) = {1, 0, 0};
+
+
+ptn_p1[] = Point{1};
+ptn_p2[] = Point{2};
+ptn_p3[] = Point{3};
+ptn_p4[] = Point{4};
+
+ptn_pline1[] = {0., 0.5, 0.};  // start point line
+ptn_pline2[] = {10., 0.5, 0.}; // end point line
+
+
+Call calc_intersection_Bezier_line;
+
+Call slice_bezier_param;
+
+
+Point(1002) = {ptn_x12, ptn_y12, 0}; // Control point
+Point(1003) = {ptn_x123, ptn_y123, 0}; // Control point
+Point(1004) = {ptn_x1234, ptn_y1234, 0}; // Intersecting
+Point(1005) = {ptn_x234, ptn_y234, 0}; // Control point
+Point(1006) = {ptn_x34, ptn_y34, 0}; // Control point
+Bezier(101)  = {1, 1002, 1003, 1004};
+Bezier(102)  = {1004, 1005, 1006, 4};
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>
