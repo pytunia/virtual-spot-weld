@@ -4,9 +4,9 @@ Include "99_functions\ptn_bezier_functions.geo";
 Geometry.CopyMeshingMethod = 1;
 Geometry.AutoCoherence = 0;
 
-Include "10_parameters\01_default_parameters.geo";
-// Include "10_parameters\02_custom_parameters.geo";
-flag_halo = 0;
+// Include "10_parameters\01_default_parameters.geo";
+Include "10_parameters\02_custom_parameters.geo";
+
 
 
 Include "01_fusion_zone\01_lines.geo";

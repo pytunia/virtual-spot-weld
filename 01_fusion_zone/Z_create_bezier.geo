@@ -7,8 +7,8 @@ EndIf
 Macro calculate_Point200
 	ptn_p1[] = Point{15};
 	ptn_p2[] = {dL/2 - hL - b5, 0, 0};
-	ptn_p3[] = {-10., 0.8*h1, 0};
-	ptn_p4[] = { 10., 0.8*h1, 0};
+	ptn_p3[] = {-10., 0.8*h5, 0};
+	ptn_p4[] = { 10., 0.8*h5, 0};
 	//ptn_anglex = (angle_wn + Pi/2)/2;
 	//ptn_p4[] = {ptn_p3[0] - 10*Cos(ptn_anglex), ptn_p3[1] + 10*Sin(ptn_anglex), 0 };
 	
@@ -39,9 +39,9 @@ Macro create_bezier_outside
 	ptn_p3[] = {k*(hL+b5)+p105[0], ptn_p4[1], 0}; //Point{999};
 	
 	
-
-	ptn_pline1[] = {0., Round(10*0.8*hL)/10, 0.};
-	ptn_pline2[] = {10., Round(10*0.8*hL)/10, 0.};
+	ptn_hreduced = h5;
+	ptn_pline1[] = {0., Round(ptn_hreduced/clen)*clen, 0.};
+	ptn_pline2[] = {10., Round(ptn_hreduced/clen)*clen, 0.};
 
 	
 	Call calc_intersection_Bezier_line;
