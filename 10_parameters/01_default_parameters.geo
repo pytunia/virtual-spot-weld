@@ -13,6 +13,8 @@ flag_halo = DefineNumber[ 0, Name "Generate halo (no = 0, yes = 1)?" ];
 // 0: omit. It will still be displayed but not exported as a separate unit.
 flag_shaz = DefineNumber[ 0, Name "Generate SHAZ (no = 0, yes = 1)?" ];
 
+roundness = 1; // either 1: squarish tip, or 2: round tip, i.e. circular if angle_wn = 90
+
 // angles in radians
 angle_wn 	= 	angle_wn*(Pi/180);
 angle_haz 	= 	angle_haz*(Pi/180);
@@ -25,18 +27,22 @@ h4 		= 	t0-(h1+h2+h3);
 
 
 
-b4 		= 	Ceil((0.4*h1)/clen)*clen;
+b4 		= 	Ceil(1.25*h2/clen)*clen;
 Printf("dist b4 %g", b4);
-b3 		= 	hL - b4;
+If (angle_wn < (Pi/2))
+    b3 		= 	Ceil(hL/clen)*clen + Floor((0.5*hL/Tan(angle_wn))/clen)*clen - b4;
+Else
+    b3 		= 	Ceil(hL/clen)*clen - b4;
+EndIf
 b5 		= 	h3; // h3/Sin(angle_wn); // fusion line thickness
-b1 		= 	Floor(0.4*(dL/2)/clen)*clen;
+b1 		= 	dL/2 - Floor(0.7*(dL/2)/clen)*clen;
 b2 		= 	(dL/2 - b1) - (b3+b4);
 
 b6 		= 	bHAZ -b5;
 b7 		= 	bSHAZ;
 b8 		= 	6 - (b1+b2+b3+b4+b5+b6+b7);
 If (angle_wn < (Pi/2))
-    b9 	= 	Floor(10*hL/Tan(angle_wn))/10.;
+    b9 	= 	Floor((hL/Tan(angle_wn))/clen)*clen;
 Else
     b9 	= 	0;
 EndIf

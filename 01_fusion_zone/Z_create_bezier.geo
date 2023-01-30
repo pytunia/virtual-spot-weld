@@ -1,4 +1,32 @@
+If (roundness == 1)
+	ptn_round = 2.;
+ElseIf (roundness == 2)
+	ptn_round = 1.;
+EndIf
 
+Macro calculate_Point200
+	ptn_p1[] = Point{15};
+	ptn_p2[] = {dL/2 - hL - b5, 0, 0};
+	ptn_p3[] = {-10., 0.8*h1, 0};
+	ptn_p4[] = { 10., 0.8*h1, 0};
+	//ptn_anglex = (angle_wn + Pi/2)/2;
+	//ptn_p4[] = {ptn_p3[0] - 10*Cos(ptn_anglex), ptn_p3[1] + 10*Sin(ptn_anglex), 0 };
+	
+	Call calc_intersection_btw_two_lines;
+	
+	Point(8) = { ptn_inter_x, ptn_inter_y, 0 };
+	
+	Printf("ptn_x8: %g", ptn_inter_x);
+	Printf("ptn_y8: %g", ptn_inter_y);
+	ptn_p8[] = Point{8};
+	ptn_p7[] = Point{7};
+	ptn_term1 = -2*b200*ptn_p8[0] + 2*b200*ptn_p7[0] + ptn_p8[0]^2 - ptn_p7[0]^2 + ptn_p8[1]^2 - ptn_p7[1]^2;
+	ptn_y200 = ptn_term1/( 2*(ptn_p8[1] - ptn_p7[1]));
+
+	Printf("ptn_y200: %g", ptn_y200);
+	Point(200) = {b200, ptn_y200, 0};
+	
+Return
 
 Macro create_bezier_outside
 	p105[] = Point{105};
@@ -6,7 +34,7 @@ Macro create_bezier_outside
 	k=0.5522847498; // kappa for Bezier circle
 
 	ptn_p1[] = Point{14};
-	ptn_p2[] = {ptn_p1[0]-2*k*(hL+b5)*Cos(angle_wn), ptn_p1[1]+2*k*(hL+b5)*Sin(angle_wn), 0}; //Point{998};
+	ptn_p2[] = {ptn_p1[0]-ptn_round*k*(hL+b5)*Cos(angle_wn), ptn_p1[1]+ptn_round*k*(hL+b5)*Sin(angle_wn), 0}; //Point{998};
 	ptn_p4[] = Point{116};
 	ptn_p3[] = {k*(hL+b5)+p105[0], ptn_p4[1], 0}; //Point{999};
 	
@@ -65,7 +93,7 @@ Macro create_bezier_inside
 	k=0.5522847498; // kappa for Bezier circle
 
 	ptn_p1[] = Point{9};
-	ptn_p2[] = {ptn_p1[0]-2*k*(hL)*Cos(angle_wn), ptn_p1[1]+2*k*(hL)*Sin(angle_wn), 0}; 
+	ptn_p2[] = {ptn_p1[0]-ptn_round*k*(hL)*Cos(angle_wn), ptn_p1[1]+ptn_round*k*(hL)*Sin(angle_wn), 0}; 
 	ptn_p4[] = Point{111};
 	ptn_p3[] = {k*(hL)+p105[0], ptn_p4[1], 0}; 
 	

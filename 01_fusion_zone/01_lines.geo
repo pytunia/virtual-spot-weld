@@ -54,23 +54,24 @@ EndIf
 
 
 // --- Y-Grid transition corner to arc --- //
-Point(200) = {b200, h200, 0};
-
 Point(7) = {(b1+b2)+b3, 0, 0, clen};
 Point(106) = {(b1+b2)-b9, h1, 0, clen};
 
-// - Find Point 8 - //
-ptn_p1[] = Point{200};
-ptn_p2[] = Point{7};
-Call calc_distance_btw_two_points;
-ptn_circ_rad = ptn_dist;
+Call calculate_Point200;
 
-ptn_p1 = Point{5};
-ptn_p2 = Point{15};
-ptn_p3 = Point{200};
-
-Call calc_intersection_line_circle;
-Point(8) = {ptn_inter1_x, ptn_inter1_y, 0};
+//Point(200) = {b200, h200, 0};
+//// - Find Point 8 - //
+//ptn_p1[] = Point{200};
+//ptn_p2[] = Point{7};
+//Call calc_distance_btw_two_points;
+//ptn_circ_rad = ptn_dist;
+//
+//ptn_p1 = Point{5};
+//ptn_p2 = Point{15};
+//ptn_p3 = Point{200};
+//
+//Call calc_intersection_line_circle;
+//Point(8) = {ptn_inter1_x, ptn_inter1_y, 0};
 
 // - Find Point 201 - //
 p106 = Point{106};
