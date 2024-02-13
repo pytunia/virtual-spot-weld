@@ -6,4 +6,8 @@ The script provides vast flexibility in varying the geometry of the spot weld as
 ![Parameter variation](param_variation.gif) 
 
 
+# Documentation
+[https://pytunia.github.io/virtual-spot-weld/](https://pytunia.github.io/virtual-spot-weld/)
+
+
 **Under construction**
